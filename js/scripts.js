@@ -21,11 +21,12 @@ function Board() {
 
 }
 
-Board.prototype.findSpace = function (coordinates) {
-   for(var i = 0; i<this.board.length(); i++) {
-     if ( this.board[i] === coordinates)
-       return coordinates;
+Board.prototype.findSpace = function (space) {
+   for(var i = 0; i<this.board.length; i++) {
+     if ( this.board[i] === (space.xCoordinate, space.yCoordinate))
+       return space;
    }
+   
 }
 
 // function Game() {

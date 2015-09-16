@@ -33,9 +33,15 @@ describe('Board', function() {
   });
 
   it("finds a specific space on the board", function()  {
-  // var testSpace = new Space(1,2);
-  // expect(testBoard.findSpace((1,2)).to.equal(testSpace);
+    var testBoard = new Board();
+    var testSpace = new Space(1,2);
 
+    expect(testBoard.findSpace(testSpace)).to.equal(testSpace);
+  });
 
-});
+  it("returns the player property for a Space", function()  {
+    var testBoard = new Board();
+    var testSpace = new Space(1,2);
+    expect(testBoard.findSpace(testSpace).markedBy()).to.equal(null);
+  });
 });
