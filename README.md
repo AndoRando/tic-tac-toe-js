@@ -2,7 +2,7 @@
 
 ##### This app allows you to... Seriously, you should really know how this game works if you can read this.
 
-#### By _**Carlo De Gregorio**_
+#### By _**Kendra Ash & Chris Underwood & Carlo De Gregorio**_
 
 ## Description
 
@@ -18,7 +18,7 @@ _Users can:_
 
 ### Legal
 
-Copyright (c) 2015 **_Carlo De Gregorio_**
+Copyright (c) 2015 **_Kendra Ash & Chris Underwood & Carlo De Gregorio_**
 
 This software is licensed under the MIT license.
 

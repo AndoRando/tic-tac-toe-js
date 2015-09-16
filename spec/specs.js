@@ -45,3 +45,13 @@ describe('Board', function() {
     expect(testBoard.findSpace(testSpace).markedBy()).to.equal(null);
   });
 });
+
+describe('Game', function() {
+  it('creates 1 board', function() {
+    var testBoard = new Board();
+    var testPlayer1 = new Player("X");
+    var testPlayer2 = new Player("O");
+    var testGame = new Game(testBoard, testPlayer1, testPlayer2);
+    expect(testGame.board, testGame.player1, testGame.player2).to.equal(testBoard, testPlayer1, testPlayer2);
+  });
+});

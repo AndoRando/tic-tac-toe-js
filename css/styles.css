@@ -1,3 +1,11 @@
 #result {
   display: none;
 }
+
+.canvas-color-1 {
+  background-color : red;
+}
+
+.canvas-color-2 {
+  background-color : yellow;
+}
