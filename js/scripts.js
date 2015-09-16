@@ -17,8 +17,15 @@ Space.prototype.markedBy = function() {
 }
 
 function Board() {
+  this.board = [(0,2), (1,2), (2,2), (0,1), (1,1), (2,1), (0,0), (1,0), (2,0)];
 
+}
 
+Board.prototype.findSpace = function (coordinates) {
+   for(var i = 0; i<this.board.length(); i++) {
+     if ( this.board[i] === coordinates)
+       return coordinates;
+   }
 }
 
 // function Game() {
