@@ -32,6 +32,10 @@ describe('Board', function() {
     expect(testBoard.board).to.eql([(0,2), (1,2), (2,2), (0,1), (1,1), (2,1), (0,0), (1,0), (2,0)]);
   });
 
+  it("finds a specific space on the board", function()  {
   // var testSpace = new Space(1,2);
   // expect(testBoard.findSpace((1,2)).to.equal(testSpace);
+
+
+});
 });
