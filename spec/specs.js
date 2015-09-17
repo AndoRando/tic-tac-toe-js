@@ -7,23 +7,19 @@ describe('Player', function() {
 });
 
 describe('Space', function() {
-
-  it('returns it\'s x-coordinate', function() {
+  it("returns it's x-coordinate", function() {
     var testSpace = new Space(1, 2);
     expect (testSpace.xCoordinate).to.equal(1);
   });
 
-  it('returns it\'s y-coordinate', function() {
+  it("returns it's y-coordinate", function() {
     var testSpace = new Space(1, 2);
     expect (testSpace.yCoordinate).to.equal(2);
   });
 
-  it('lets a player mark a space and returns the player', function() {
-    var testPlayer = new Player();
-    testPlayer.mark = "X"; // {mark: 'X'}
-    var testSpace = new Space(1,2); // {xCoordinate: 1, yCoordinate: 2, player: null}
-    testSpace.setMark(testPlayer); // {xCoordinate: 1, yCoordinate: 2, player: 'X'}
-    expect(testSpace.player).to.equal('X');
+  it("returns it's player mark", function() {
+    var testSpace = new Space(1, 2);
+    expect (testSpace.player).to.equal(undefined);
   });
 });
 
@@ -65,6 +61,51 @@ describe('Game', function() {
     });
   });
 
+  describe('victory', function() {
+    it("returns victory when three consequetive horizontal spaces have the same mark ", function() {
+      var testBoard = new Board();
+      var testPlayerO = new Player();
+      var testPlayerX = new Player();
+      var testGame = new Game(testBoard, testPlayerX, testPlayerO);
+      testGame.playerOTurn(4);
+      testGame.playerOTurn(3);
+      testGame.playerOTurn(5);
+      expect(testGame.victory({xCoordinate: 3, yCoordinate: 2, player: "O"})).to.equal("Horizontal Victory");
+    });
+
+    it("returns victory when three consequetive vertical spaces have the same mark ", function() {
+      var testBoard = new Board();
+      var testPlayerO = new Player();
+      var testPlayerX = new Player();
+      var testGame = new Game(testBoard, testPlayerX, testPlayerO);
+      testGame.playerOTurn(1);
+      testGame.playerOTurn(4);
+      testGame.playerOTurn(7);
+      expect(testGame.victory({xCoordinate: 2, yCoordinate: 3, player: "O"})).to.equal("Vertical Victory");
+    });
+
+    it("returns victory when three consequetive diagonal spaces have the same mark ", function() {
+      var testBoard = new Board();
+      var testPlayerO = new Player();
+      var testPlayerX = new Player();
+      var testGame = new Game(testBoard, testPlayerX, testPlayerO);
+      testGame.playerOTurn(0);
+      testGame.playerOTurn(4);
+      testGame.playerOTurn(8);
+      expect(testGame.victory({xCoordinate: 3, yCoordinate: 3, player: "O"})).to.equal("Diagonal Victory");
+    });
+
+    it("returns victory when three consequetive diagonal spaces have the same mark ", function() {
+      var testBoard = new Board();
+      var testPlayerO = new Player();
+      var testPlayerX = new Player();
+      var testGame = new Game(testBoard, testPlayerX, testPlayerO);
+      testGame.playerOTurn(2);
+      testGame.playerOTurn(4);
+      testGame.playerOTurn(6);
+      expect(testGame.victory({xCoordinate: 1, yCoordinate: 3, player: "O"})).to.equal("Diagonal Victory");
+    });
+  });
 });
   // it('creates 9 spaces when it is initialized', function() {
   //   var testBoard = new Board();

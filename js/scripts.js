@@ -8,12 +8,6 @@ function Space(xCoordinate, yCoordinate, player) {
   this.player = player;
 }
 
-// AB / JJ - Revisit later for second approach
-//
-// Space.prototype.setMark = function(player) {
-//   this.player = player.mark;
-// }
-
 function Board() {
   this.spaces = [];
 
@@ -40,7 +34,27 @@ Game.prototype.playerOTurn = function(space) {
   this.board.spaces[space].player = "O";
 }
 
-// check board, if 3 marks all have matching xCoordinates or matching yCoordinates or matching xCoordiantes and yCoordinates, then player wins
+Game.prototype.victory = function(space) {
+  var sameY = this.board.spaces.filter(function(el) {
+    return space.yCoordinate == el.yCoordinate;
+  });
+  var sameX = this.board.spaces.filter(function(el) {
+    return space.xCoordinate == el.xCoordinate;
+  });
+
+
+  if (sameY.length === 3 && sameY[0].player == sameY[1].player && sameY[1].player == sameY[2].player) {
+    console.log("entered horizontal check");
+    return "Horizontal Victory"; // Horizontal check
+  } else if (sameX.length === 3 && sameX[0].player == sameX[1].player && sameX[1].player == sameX[2].player) {
+    console.log("entered vertical check");
+    return "Vertical Victory";   // Vertical check
+  } else if ((this.board.spaces[0].player == this.board.spaces[4].player && this.board.spaces[4].player == this.board.spaces[8].player)
+              ||
+             (this.board.spaces[2].player == this.board.spaces[4].player && this.board.spaces[4].player == this.board.spaces[6].player)) {
+    return "Diagonal Victory";   // Diagonal check
+  }
+}
 
 $(document).ready(function(event) {
   var counter = 1; // This counter keeps track of the player turn
@@ -51,22 +65,21 @@ $(document).ready(function(event) {
   var game = new Game(board, playerX, playerO);
 
   $(".space").click(function() {
-    console.log(parseInt($(this).attr("id")));
-    if (game.board.spaces[parseInt($(this).attr("id"))].player == null) {
+    var fetchSpace = game.board.spaces[parseInt($(this).attr("id"))]
+
+    if (fetchSpace.player == null) {
       if (counter % 2 === 0) {
         game.playerXTurn(parseInt($(this).attr("id")));
-        $(this).text(game.board.spaces[parseInt($(this).attr("id"))].player)
+        $(this).text(fetchSpace.player)
+        $("#victory").append("<p>" + game.victory(fetchSpace) + "</p>");
       }
       else {
         game.playerOTurn(parseInt($(this).attr("id")));
-        $(this).text(game.board.spaces[parseInt($(this).attr("id"))].player)
+        $(this).text(fetchSpace.player)
+        $("#victory").append("<p>" + game.victory(fetchSpace) + "</p>");
       }
       counter ++; // Increments player turn
-    } else {
-      console.log("Space already marked");
-      console.log(counter);
     }
-
-
   });
+
 });
