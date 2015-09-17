@@ -1,5 +1,5 @@
-function Player(mark) {
-  this.mark = mark;
+function Player() {
+  this.mark = '';
 }
 
 function Space(xCoordinate, yCoordinate, player) {
@@ -17,19 +17,18 @@ function Board() {
 
   for (var y = 1; y < 4; y++) {
     for (var x = 1; x < 4; x++) {
-      (this.spaces).push(new Space(x, y));
+      this.spaces.push(new Space(x, y));
     };
   };
-};
-
-function Game(board, player1, player2) {
-  this.board = board;
-  this.player1 = player1;
-  this.player2 = player2;
 }
 
-
-
+function Game(board, playerX, playerO) {
+  this.board = board;
+  this.playerX = playerX;
+  this.playerX.mark = "X";
+  this.playerO = playerO;
+  this.playerX.mark = "O";
+}
 
 // check board, if 3 marks all have matching xCoordinates or matching yCoordinates or matching xCoordiantes and yCoordinates, then player wins
 

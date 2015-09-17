@@ -1,6 +1,7 @@
 describe('Player', function() {
   it('returns a players mark', function() {
-    var testPlayer = new Player('X');
+    var testPlayer = new Player();
+    testPlayer.mark = "X";
     expect(testPlayer.mark).to.equal('X');
   });
 });
@@ -18,7 +19,8 @@ describe('Space', function() {
   });
 
   it('lets a player mark a space and returns the player', function() {
-    var testPlayer = new Player('X'); // {mark: 'X'}
+    var testPlayer = new Player();
+    testPlayer.mark = "X"; // {mark: 'X'}
     var testSpace = new Space(1,2); // {xCoordinate: 1, yCoordinate: 2, player: null}
     testSpace.setMark(testPlayer); // {xCoordinate: 1, yCoordinate: 2, player: 'X'}
     expect(testSpace.player).to.equal('X');
@@ -31,6 +33,15 @@ describe('Board', function() {
     expect(testBoard.spaces[5].xCoordinate).to.eql(3);
   });
 
+describe('Game', function() {
+  it('create a game object that includes a board and two players', function() {
+    var testBoard = new Board();
+    var testPlayerX = new Player();
+    var testPlayerO = new Player();
+    var testGame = new Game(testBoard, testPlayerX, testPlayerO);
+    expect(testGame.board.spaces[5].xCoordinate,testGame.playerX.mark, testGame.playerO.mark).to.equal(3, "X", "O");
+  });
+});
   // it('creates 9 spaces when it is initialized', function() {
   //   var testBoard = new Board();
   //   expect(testBoard.board).to.eql([(0,2), (1,2), (2,2), (0,1), (1,1), (2,1), (0,0), (1,0), (2,0)]);
@@ -48,14 +59,4 @@ describe('Board', function() {
   //   var testSpace = new Space(1,2);
   //   expect(testBoard.findSpace(testSpace).markedBy()).to.equal(null);
   // });
-});
-
-describe('Game', function() {
-  it('creates 1 board', function() {
-    var testBoard = new Board();
-    var testPlayer1 = new Player("X");
-    var testPlayer2 = new Player("O");
-    var testGame = new Game(testBoard, testPlayer1, testPlayer2);
-    expect(testGame.board, testGame.player1, testGame.player2).to.equal(testBoard, testPlayer1, testPlayer2);
-  });
 });
