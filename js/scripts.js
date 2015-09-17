@@ -48,18 +48,17 @@ $(document).ready(function(event) {
   $("canvas.boxes").click(function() {
     // event.preventDefault();
 
-    splitId = this.id.split(",");
-    var space = new Space(parseInt(splitId[0]),parseInt(splitId[1]));
+    // splitId = this.id.split(",");
+    // var space = new Space(parseInt(splitId[0]),parseInt(splitId[1]));
 
 
-      //Player 1
+      // Player 1
       console.log(counter);
       if(counter % 2 === 0) {
         $(this).addClass('canvas-color-2');
       }
-      //Player 2
+      // Player 2
       else {
-        debugger
         $(this).addClass('canvas-color-1');
       }
       counter ++; // Increments player turn
