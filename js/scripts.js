@@ -13,15 +13,14 @@ Space.prototype.setMark = function(player) {
 }
 
 function Board() {
-  this.board = [ (0, 2), (1, 2), (2, 2), (0, 1), (1, 1), (2, 1), (0, 0), (1, 0), (2, 0) ];
-}
+  this.spaces = [];
 
-Board.prototype.findSpace = function (space) {
-   for( var i = 0; i < this.board.length; i++ ) {
-     if ( this.board[i] === (space.xCoordinate, space.yCoordinate) )
-       return space;
-   }
-}
+  for (var y = 1; y < 4; y++) {
+    for (var x = 1; x < 4; x++) {
+      (this.spaces).push(new Space(x, y));
+    };
+  };
+};
 
 function Game(board, player1, player2) {
   this.board = board;
