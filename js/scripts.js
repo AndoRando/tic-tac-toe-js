@@ -30,6 +30,14 @@ function Game(board, playerX, playerO) {
   this.playerX.mark = "O";
 }
 
+Game.prototype.playerXTurn = function(space) {
+  this.board.spaces[space].player = "X";
+}
+
+Game.prototype.playerOTurn = function(space) {
+  this.board.spaces[space].player = "O";
+}
+
 // check board, if 3 marks all have matching xCoordinates or matching yCoordinates or matching xCoordiantes and yCoordinates, then player wins
 
 $(document).ready(function(event) {

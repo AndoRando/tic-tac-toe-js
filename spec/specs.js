@@ -32,6 +32,7 @@ describe('Board', function() {
     var testBoard = new Board();
     expect(testBoard.spaces[5].xCoordinate).to.eql(3);
   });
+});
 
 describe('Game', function() {
   it('create a game object that includes a board and two players', function() {
@@ -41,6 +42,29 @@ describe('Game', function() {
     var testGame = new Game(testBoard, testPlayerX, testPlayerO);
     expect(testGame.board.spaces[5].xCoordinate,testGame.playerX.mark, testGame.playerO.mark).to.equal(3, "X", "O");
   });
+
+  describe('playerXTurn', function() {
+    it("assigns a player's mark to a given space", function() {
+      var testBoard = new Board();
+      var testPlayerX = new Player();
+      var testPlayerO = new Player();
+      var testGame = new Game(testBoard, testPlayerX, testPlayerO);
+      testGame.playerXTurn(4);
+      expect(testGame.board.spaces[4].player).to.equal("X");
+    });
+  });
+
+  describe('playerOTurn', function() {
+    it("assigns a player's mark to a given space", function() {
+      var testBoard = new Board();
+      var testPlayerO = new Player();
+      var testPlayerX = new Player();
+      var testGame = new Game(testBoard, testPlayerX, testPlayerO);
+      testGame.playerOTurn(4);
+      expect(testGame.board.spaces[4].player).to.equal("O");
+    });
+  });
+
 });
   // it('creates 9 spaces when it is initialized', function() {
   //   var testBoard = new Board();
@@ -59,4 +83,3 @@ describe('Game', function() {
   //   var testSpace = new Space(1,2);
   //   expect(testBoard.findSpace(testSpace).markedBy()).to.equal(null);
   // });
-});
