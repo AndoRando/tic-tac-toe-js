@@ -2,23 +2,18 @@ function Player(mark) {
   this.mark = mark;
 }
 
-function Space(xCoordinate, yCoordinate) {
+function Space(xCoordinate, yCoordinate, player) {
   this.xCoordinate = xCoordinate;
   this.yCoordinate = yCoordinate;
-  this.player = null;
-}
-
-Space.prototype.setMark = function(player) {
   this.player = player;
 }
 
-Space.prototype.markedBy = function() {
-  return this.player;
+Space.prototype.setMark = function(player) {
+  this.player = player.mark;
 }
 
 function Board() {
   this.board = [ (0, 2), (1, 2), (2, 2), (0, 1), (1, 1), (2, 1), (0, 0), (1, 0), (2, 0) ];
-
 }
 
 Board.prototype.findSpace = function (space) {
@@ -26,15 +21,12 @@ Board.prototype.findSpace = function (space) {
      if ( this.board[i] === (space.xCoordinate, space.yCoordinate) )
        return space;
    }
-
 }
 
 function Game(board, player1, player2) {
   this.board = board;
   this.player1 = player1;
   this.player2 = player2;
-
-
 }
 
 
