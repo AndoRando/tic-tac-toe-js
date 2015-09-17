@@ -8,9 +8,11 @@ function Space(xCoordinate, yCoordinate, player) {
   this.player = player;
 }
 
-Space.prototype.setMark = function(player) {
-  this.player = player.mark;
-}
+// AB / JJ - Revisit later for second approach
+//
+// Space.prototype.setMark = function(player) {
+//   this.player = player.mark;
+// }
 
 function Board() {
   this.spaces = [];
@@ -43,25 +45,28 @@ Game.prototype.playerOTurn = function(space) {
 $(document).ready(function(event) {
   var counter = 1; // This counter keeps track of the player turn
 
-  $("canvas.boxes").click(function() {
-    // event.preventDefault();
+  var board = new Board();
+  var playerO = new Player();
+  var playerX = new Player();
+  var game = new Game(board, playerX, playerO);
 
-    // splitId = this.id.split(",");
-    // var space = new Space(parseInt(splitId[0]),parseInt(splitId[1]));
-
-
-      // Player 1
-      console.log(counter);
-      if(counter % 2 === 0) {
-        $(this).addClass('canvas-color-2');
+  $(".space").click(function() {
+    console.log(parseInt($(this).attr("id")));
+    if (game.board.spaces[parseInt($(this).attr("id"))].player == null) {
+      if (counter % 2 === 0) {
+        game.playerXTurn(parseInt($(this).attr("id")));
+        $(this).text(game.board.spaces[parseInt($(this).attr("id"))].player)
       }
-      // Player 2
       else {
-        $(this).addClass('canvas-color-1');
+        game.playerOTurn(parseInt($(this).attr("id")));
+        $(this).text(game.board.spaces[parseInt($(this).attr("id"))].player)
       }
       counter ++; // Increments player turn
+    } else {
+      console.log("Space already marked");
+      console.log(counter);
+    }
 
 
   });
-
 });
